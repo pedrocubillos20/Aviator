@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - AVIATOR PRO</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Aviator Pirer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3f3;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+    }
+
+    .chart-container {
+      height: 300px;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .controls h2 {
+      margin-bottom: 10px;
+    }
+
+    input[type="number"] {
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://i.postimg.cc/26wRYM4F/images.png" alt="Logo Avión">
+      <h1>Aviator Pirer Crack</h1>
+    </div>
+    <div class="chart-container">
+      <canvas id="multiplierChart"></canvas>
+    </div>
+    <div class="controls">
+      <h2> Multiplicadores:</h2>
+      <div id="multipliersContainer"></div>
+      <input type="number" id="manualMultiplier" placeholder="Ingresa un multiplicador">
+      <button onclick="addManualMultiplier()">Agregar Manualmente</button>
+      <button onclick="predictNextMultiplier()">Predecir Siguiente Multiplicador</button>
+      <button onclick="resetChart()">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    var multipliers = [];
+
+    function generateRandomMultiplier() {
+      return Math.floor(Math.random() * 100) + 1;
+    }
+
+    function addManualMultiplier() {
+      var manualMultiplier = parseInt(document.getElementById('manualMultiplier').value);
+      if (!isNaN(manualMultiplier)) {
+        multipliers.push(manualMultiplier);
+        updateMultipliersContainer();
+        updateChart();
+        document.getElementById('manualMultiplier').value = '';
+      }
+    }
+
+    function predictNextMultiplier() {
+      var lastMultiplier = multipliers[multipliers.length - 1];
+      var predictedMultiplier = generateRandomMultiplier();
+      alert('Próximo Multiplicador: ' + predictedMultiplier);
+    }
+
+    function resetChart() {
+      multipliers = [];
+      updateMultipliersContainer();
+      updateChart();
+    }
+
+    function updateMultipliersContainer() {
+      var multipliersContainer = document.getElementById('multipliersContainer');
+      multipliersContainer.innerHTML = '';
+      for (var i = Math.max(0, multipliers.length - 10); i < multipliers.length; i++) {
+        var multiplier = multipliers[i] ? multipliers[i] : '-';
+        var multiplierElement = document.createElement('span');
+        multiplierElement.innerText = multiplier;
+        multipliersContainer.appendChild(multiplierElement);
+      }
+    }
+
+    function updateChart() {
+      var ctx = document.getElementById('multiplierChart').getContext('2d');
+      var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: Array.from(Array(Math.max(11, multipliers.length)).keys()).map(i => 'Lanzamiento ' + (i + 1)),
+          datasets: [{
+            label: 'Multiplicadores',
+            data: multipliers,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+            pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+            pointBorderColor: '#fff',
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(54, 162, 235, 1)',
+            pointHoverBorderColor: '#fff'
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+    window.onload = function() {
+      updateChart();
+    };
+  </script>
+</body>
+
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
